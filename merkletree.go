@@ -1,6 +1,7 @@
 package merkletree
 
 import (
+	"crypto/sha256"
 	"hash"
 	"math"
 )
@@ -36,6 +37,14 @@ func New(hasher hash.Hash, data []MerkletreeItem) *Merkletree {
 	mt.tree = make([][]byte, math.Pow(2, float64(h))-1)
 
 	return &mt
+}
+
+func NewSha256Tree(data []MerkletreeItem) *Merkletree {
+	return New(sha256.New(), data)
+}
+
+func (mt *Merkletree) GetTreeData() [][]byte {
+	return mt.tree
 }
 
 func (mt *Merkletree) SumTree() {
