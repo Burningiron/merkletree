@@ -34,7 +34,7 @@ func New(hasher hash.Hash, data []MerkletreeItem) *Merkletree {
 
 	mt.height = h
 
-	mt.tree = make([][]byte, math.Pow(2, float64(h))-1)
+	mt.tree = make([][]byte, int(math.Pow(2, float64(h))-1))
 
 	return &mt
 }
